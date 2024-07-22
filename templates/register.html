@@ -1,29 +1,75 @@
 <!-- File: Portfolio_Tracker/templates/register.html -->
 <!-- Description: Template for the registration page. -->
 
-<!-- File: Portfolio_Tracker/templates/register.html -->
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block content %}
-<h2>{{ title }}</h2>
-<form method="POST" action="{{ url_for('register') }}">
-    {{ form.hidden_tag() }}
-    <div class="form-group">
-        {{ form.username.label(class="form-control-label") }}
-        {{ form.username(class="form-control", placeholder="Username") }}
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{{ url_for('index') }}">Stock Portfolio Tracker</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                {% if current_user.is_authenticated %}
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('dashboard') }}">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('profile') }}">Profile</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('stock_tracker') }}">Stock Tracker</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('recommendations') }}">Recommendations</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('logout') }}">Logout</a></li>
+                {% else %}
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('login') }}">Login</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('register') }}">Register</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <!-- Registration form content -->
+        <h2>{{ title }}</h2>
+        <form method="POST" action="{{ url_for('register') }}">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                {{ form.username.label(class="form-control-label") }}
+                {{ form.username(class="form-control", placeholder="Username") }}
+            </div>
+            <div class="form-group">
+                {{ form.email.label(class="form-control-label") }}
+                {{ form.email(class="form-control", placeholder="Email") }}
+            </div>
+            <div class="form-group">
+                {{ form.password.label(class="form-control-label") }}
+                {{ form.password(class="form-control", placeholder="Password") }}
+            </div>
+            <div class="form-group">
+                {{ form.password2.label(class="form-control-label") }}
+                {{ form.password2(class="form-control", placeholder="Repeat Password") }}
+            </div>
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
     </div>
-    <div class="form-group">
-        {{ form.email.label(class="form-control-label") }}
-        {{ form.email(class="form-control", placeholder="Email") }}
-    </div>
-    <div class="form-group">
-        {{ form.password.label(class="form-control-label") }}
-        {{ form.password(class="form-control", placeholder="Password") }}
-    </div>
-    <div class="form-group">
-        {{ form.password2.label(class="form-control-label") }}
-        {{ form.password2(class="form-control", placeholder="Repeat Password") }}
-    </div>
-    <button type="submit" class="btn btn-primary">Register</button>
-</form>
-{% endblock %}
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

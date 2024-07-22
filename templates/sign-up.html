@@ -32,14 +32,14 @@
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- CSS Files -->
-  <link id="pagestyle" href="../assets/css/soft-ui-dashboard.css?v=1.0.7" rel="stylesheet" />
+  <link id="pagestyle" href="{{ url_for('static', filename='css/soft-ui-dashboard.css') }}?v=1.0.7" rel="stylesheet" />
   <!-- Nepcha Analytics (nepcha.com) -->
   <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
   <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
-  <link rel="stylesheet" href="../assets/css/edited-styling.css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/edited-styling.css') }}" />
   <style>
    body {
-      background-image: url('../assets/img/backgrounds/stocks-pic.png'); /* Replace with your image path */
+      background-image: url('{{ url_for('static', filename='img/backgrounds/stocks-pic.png') }}');
       background-size: cover;      /* Ensures the image covers the entire background */
       background-position: center; /* Centers the image */
       background-repeat: no-repeat; /* Prevents the image from repeating */
