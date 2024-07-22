@@ -145,6 +145,18 @@ def dashboard():
     }
     return render_template('dashboard.html', title='Dashboard', stocks=stocks)
 
+@app.route('/news')
+def news():
+    return render_template('virtual-reality.html', title='News')
+
+@app.route('/connect')
+def connect():
+    return render_template('connect.html', title='News')
+
+@app.route('/invest')
+def invest():
+    return render_template('invest.html', title='News')
+
 @app.route('/profile')
 @login_required
 def profile():
