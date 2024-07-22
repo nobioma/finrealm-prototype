@@ -69,19 +69,31 @@
           <div class="col-xl-4 col-lg-5 col-md-7 mx-auto">
             <div class="card bg-transparent z-index-0">
               <div class="card-body">
-                <form role="form text-left">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+                
+                <form role="form text-left" method="POST" action="{{ url_for('register') }}">
+                    {{ form.hidden_tag() }}
                   <div class="mb-3">
-                    <input type="text" class="form-control" placeholder="Username" aria-label="Name" aria-describedby="email-addon">
+                    {{ form.username(class="form-control", placeholder="Username", aria_label="Name", aria_describedby="username-addon") }}
                   </div>
                   <div class="mb-3">
-                    <input type="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="email-addon">
+                    {{ form.email(class="form-control", placeholder="Email", aria_label="Email", aria_describedby="email-addon") }}
                   </div>
                   <div class="mb-3">
-                    <input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="password-addon">
+                    {{ form.password(class="form-control", placeholder="Password", aria_label="Password", aria_describedby="password-addon") }}
                   </div>
-                  <div class="text-center">
-                    <a href="sign-in.html" class="btn bg-gradient-info w-100 my-4 mb-2 d-inline-block text-center" role="button">Sign up</a>
+                  <div class="mb-3">
+                    {{ form.password2(class="form-control", placeholder="Repeat Password", aria_label="Repeat Password", aria_describedby="repeat-password-addon") }}
                   </div>
+                  <button type="submit" class="btn bg-gradient-info w-100 my-4 mb-2 d-inline-block text-center" role="button">
+                    Sign up
+                  </button>
                   <p class="text-sm mt-3 mb-0 header">Already have an account? <a href="sign-in.html" class="text-info text-gradient font-weight-bolder">Sign in</a></p>
                 </form>
               </div>

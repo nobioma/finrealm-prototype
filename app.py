@@ -131,7 +131,7 @@ def register():
         db.session.add(user)
         db.session.commit()
         flash('Congratulations, you are now a registered user!')
-        return redirect(url_for('login'))
+        return redirect(url_for('sign-in'))
     return render_template('sign-up.html', title='Register', form=form)
 
 @app.route('/dashboard')
