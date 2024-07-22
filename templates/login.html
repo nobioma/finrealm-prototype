@@ -1,0 +1,25 @@
+<!-- File: Portfolio_Tracker/templates/login.html -->
+<!-- Description: Template for the login page. -->
+
+
+{% extends "base.html" %}
+
+{% block content %}
+<h2>{{ title }}</h2>
+<form method="POST" action="{{ url_for('login') }}">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+        {{ form.username.label(class="form-control-label") }}
+        {{ form.username(class="form-control", placeholder="Username") }}
+    </div>
+    <div class="form-group">
+        {{ form.password.label(class="form-control-label") }}
+        {{ form.password(class="form-control", placeholder="Password") }}
+    </div>
+    <div class="form-group form-check">
+        {{ form.remember_me(class="form-check-input") }}
+        {{ form.remember_me.label(class="form-check-label") }}
+    </div>
+    <button type="submit" class="btn btn-primary">Sign In</button>
+</form>
+{% endblock %}
