@@ -1,0 +1,274 @@
+@import url("https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/plus-jakarta-display.min.css");
+
+body {
+    height: 100%;
+    background-color: #1e1d1b;
+    background-image: linear-gradient(315deg, #cc9934 0%, #161615 80%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: 'Plus Jakarta Display';
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    opacity: 1;
+    background-color: #151007;
+}
+
+.header {
+    color: #ffffff !important;
+}
+
+.subtext {
+    color: #959595;
+}
+
+/*
+#sidenav-main {
+    background-color: #151007 !important;
+}
+*/
+
+.welcome-card {
+    background-image: url("../img/backgrounds/stocks-pic.png");
+    background-size: cover;
+}
+
+.bg-gray {
+    background-color: rgb(39, 38, 38);
+}
+
+.navbar-vertical .navbar-nav>.nav-item .nav-link.active {
+    background-color: #35260d;
+}
+
+.navbar-vertical .navbar-nav>.nav-item .nav-link.active .icon {
+    background-image: linear-gradient(0deg, #b59410 100%, #b59410 100%);
+}
+
+.navbar-vertical.navbar-expand-xs .navbar-nav>.nav-item>.nav-link.active .icon svg .color-background {
+    fill: white;
+}
+
+.navbar-vertical.navbar-expand-xs .navbar-nav>.nav-item>.nav-link .icon svg .color-background {
+    fill: #b59410;
+}
+
+.bg-gradient-primary {
+    background-image: none;
+}
+
+.min-height-banner {
+    min-height: 150px !important;
+}
+
+.form-control {
+    background-color: transparent;
+}
+
+.input-group-text {
+    background-color: transparent;
+}
+
+.card-header {
+    background-color: #151007;
+}
+
+.navbar-vertical.navbar-expand-xs .navbar-nav>.nav-item>.nav-link .icon svg .color-background {
+    fill: #b59410;
+}
+
+.text-gradient.text-dark {
+    background-image: linear-gradient(310deg, #b59410 0%, #b59410 100%);
+}
+
+.btn {
+    color: white;
+}
+
+.text-body-fixed {
+    color: white !important;
+}
+
+.fixed-plugin .fixed-plugin-button--transparent {
+    background: transparent;
+}
+
+.card .card-body {
+    font-family: 'Plus Jakarta Display';
+}
+
+/* Chatbot Section Styling */
+#chatbot-section {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    /* Ensure it takes the full height available in the chat card */
+}
+
+/* Chatbox Styling */
+.chatbox {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    /* Make the chatbox take up remaining space */
+    /* Padding will be handled by child elements */
+}
+
+/* Messages Container */
+/* Chatbox Messages Styling */
+.chatbox-messages {
+    width: 100%;
+    flex: 1;
+    /* Take up all the available space above the input */
+    overflow-y: auto;
+    background-color: black;
+    padding: 10px;
+    /* Padding to space out messages from edges */
+    margin: 0;
+    /* Remove margin to align with the input box */
+    box-sizing: border-box;
+    /* Ensure padding is included in the total width */
+}
+
+/* Input Box Styling */
+.chatbox-input {
+    width: 100%;
+    /* Adjust width to account for padding */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    box-sizing: border-box;
+    /* Ensure padding does not affect width */
+    margin: 10px 0;
+    /* Adjust margin if necessary to align with the messages */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Chatbox Fixed Plugin Styling */
+.fixed-plugin .chat-card {
+    position: fixed !important;
+    bottom: -360px !important;
+    /* Initially hide the card offscreen */
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    /* Center the card horizontally */
+    height: 300px !important;
+    /* Adjust the height as needed */
+    width: 50% !important;
+    /* Set a fixed width */
+    border-radius: 16px !important;
+    padding: 10px !important;
+    transition: .2s ease !important;
+    z-index: 1020 !important;
+    background-color: black;
+    opacity: 0.75;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Show State for Chat Card */
+.fixed-plugin.show .chat-card {
+    bottom: 10px !important;
+    /* Adjust as needed */
+}
+
+.m-4--enlargened {
+    margin-left: 2.5rem !important;
+}
+
+.blur--nav {
+    box-shadow: inset 0px 0px 2px #fefefed1;
+    -webkit-backdrop-filter: saturate(200%) blur(30px);
+    backdrop-filter: saturate(200%) blur(30px);
+}
+
+.card.toggled {
+    background-color: #f0f0f0;
+    /* Change background color to indicate toggle */
+}
+
+/* Search bar box coloring */
+.form-control:focus {
+    color: #ffffff;
+    background-color: transparent;
+    border-color: #d2d6da;
+    outline: 0;
+    box-shadow: 0 0 0 0px #ffffff;
+}
+
+.input-group .form-control:focus {
+    border-left: 1px solid none !important;
+    border-right: 1px solid white !important;
+}
+
+/* Sign in page */
+.text-gradient.text-info {
+    background-image: linear-gradient(310deg, #b59410, #cc9934);
+}
+
+.bg-gradient-info {
+    background-image: linear-gradient(310deg, #b59410 0%, #cc9934 100%);
+}
+
+.form-switch .form-check-input:checked {
+    border-color: #b59410;
+    background-color: #b59410;
+}
+
+.text-gold {
+    color: #cc9934 !important;
+}
+
+
+/* Styling for enlargened card */
+.card.enlarged {
+    position: fixed;
+    /* Fixes the card in place */
+    top: 50%;
+    /* Center vertically */
+    left: 50%;
+    /* Center horizontally */
+    transform: translate(-50%, -50%) scale(1.5);
+    /* Center and scale up */
+    z-index: 9999;
+    /* Ensure it’s on top of all other content */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    /* Shadow for emphasis */
+}
+
+/* Clickable card cursor */
+.card.clickable {
+    cursor: pointer;
+}
+
+/*
+.page-header {
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    background-size: contain;
+    background-position: 50%;
+}
+
+.page-header .container {
+    z-index: 1;
+}
+*/
+
+/* Scrollable portfolio card */
+.card-body--scrollable {
+    height: 400px;
+    /* Fixed height for scrollable content */
+    overflow-y: auto;
+    /* Enable vertical scrolling */
+}
+
+.card.bg-transparent {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+}
