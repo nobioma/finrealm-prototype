@@ -1,17 +1,99 @@
-<!-- File: Portfolio_Tracker/templates/index.html -->
-<!-- Description: Template for the home page. -->
 
 
 
-{% extends "base.html" %}
+<!--
+=========================================================
+* Soft UI Dashboard - v1.0.7
+=========================================================
 
-{% block content %}
-<div class="jumbotron">
-    <h1 class="display-4">Welcome to the Stock Portfolio Tracker</h1>
-    <p class="lead">Track your stock portfolio performance with real-time data and recommendations.</p>
-    <hr class="my-4">
-    <p>Login or register to start tracking your portfolio.</p>
-    <a class="btn btn-primary btn-lg" href="{{ url_for('login') }}" role="button">Login</a>
-    <a class="btn btn-secondary btn-lg" href="{{ url_for('register') }}" role="button">Register</a>
-</div>
-{% endblock %}
+* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard
+* Copyright 2023 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://www.creative-tim.com/license)
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="./assets/img/favicon.png">
+
+  <title>
+    
+    Soft UI Dashboard  by Creative Tim
+     
+  </title>
+
+  <style>
+    body,
+    html,
+    a {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Plus Jakarta Display";
+      background-image: linear-gradient(315deg, #161615 0%, #161615 80%);
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: white;
+      text-decoration: none;
+
+    }
+
+    a {
+      color: white !important; /* Text color */
+      text-decoration: none; /* Remove underline */
+      height: auto;
+    }
+
+    a:hover {
+      color: gold !important; /* Color when hovered */
+    }
+  </style>
+
+
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+
+  <!-- Nucleo Icons -->
+  <link href="./assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="./assets/css/nucleo-svg.css" rel="stylesheet" />
+
+  <!-- Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <link href="./assets/css/nucleo-svg.css" rel="stylesheet" />
+
+  <!-- CSS Files -->
+
+
+
+  <link id="pagestyle" href="{{ url_for('static', filename='css/soft-ui-dashboard.css') }}?v=1.0.7" rel="stylesheet" />
+
+
+
+
+  <!-- Nepcha Analytics (nepcha.com) -->
+  <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
+  <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
+
+
+</head>
+
+<body>
+  <a href="{{ url_for('register') }}" class="header"> Click to enter your FINREALM</a>
+</body>
+
+
+</html>

@@ -160,15 +160,17 @@
         </li>
       </ul>
     </div>
-    <div class="sidenav-footer mx-3 ">
+    <div class="sidenav-footer mx-3" style="margin-top: 75px;">
       <div class="card shadow-none card-background-mask-secondary" id="sidenavCard">
         <div class="full-background" style="background-image: url('../assets/img/curved-images/white-curved.jpg')"></div>
         <div class="card-body text-start p-3 w-100">
           <div class="docs-info">
             <h6 class="text-white up mb-0">Need assistance?</h6>
-            <p class="text-xs font-weight-bold">Our FinTech and IT specialists are here to help you</p>
-            <a href="https://www.creative-tim.com/learning-lab/bootstrap/license/soft-ui-dashboard" target="_blank"
-              class="btn btn-dark btn-sm w-100 mb-0">GET ASSISTANCE</a>
+            <p class="text-xs font-weight-normal header">
+              Our FinTech and IT specialists are here to help you <span class="text-xs text-gold" style="font-weight: bold;">24/7</span>
+            </p>
+            <a href="{{ url_for('dashboard') }}"
+              class="btn blur--nav btn-sm w-100 mb-0 text-gold">GET ASSISTANCE</a>
           </div>
         </div>
       </div>
@@ -190,7 +192,7 @@
               <a class="btn btn-outline-white btn-sm mb-0 me-3" href="{{ url_for('invest') }}">Invest</a>
             </li>
             <li class="nav-item d-flex align-items-center">
-              <a href="{{ url_for('logout') }}" class="nav-link text-body-fixed px-0" style="font-weight: 500;">
+              <a href="{{ url_for('logout') }}" class="nav-link text-body-fixed font-weight-bold px-0">
                 <i class="fa fa-user me-sm-1"></i>
                 <span class="d-sm-inline d-none">Sign Out</span>
               </a>
@@ -1043,6 +1045,20 @@
     gradientStroke2.addColorStop(0.2, 'rgba(72,72,176,0.0)');
     gradientStroke2.addColorStop(0, 'rgba(20,23,39,0)'); //purple colors
 
+    var gradientStroke3 = ctx2.createLinearGradient(0, 230, 0, 50);
+    
+    gradientStroke3.addColorStop(1, 'rgba(75,192,192,0.2)');
+    gradientStroke3.addColorStop(0.2, 'rgba(75,192,192,0.0)');
+    gradientStroke3.addColorStop(0, 'rgba(75,192,192,0)');
+
+    var gradientStroke4 = ctx2.createLinearGradient(0, 230, 0, 50);
+
+    gradientStroke4.addColorStop(1, 'rgba(255,206,86,0.2)');
+    gradientStroke4.addColorStop(0.2, 'rgba(255,206,86,0.0)');
+    gradientStroke4.addColorStop(0, 'rgba(255,206,86,0)');
+
+
+
     new Chart(ctx2, {
       type: "line",
       data: {
@@ -1070,6 +1086,30 @@
             backgroundColor: gradientStroke2,
             fill: true,
             data: [30, 90, 40, 140, 290, 290, 340, 230, 400],
+            maxBarThickness: 6
+          },
+          {
+            label: "Desktop apps",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 0,
+            borderColor: "#4bc0c0",
+            borderWidth: 3,
+            backgroundColor: gradientStroke3,
+            fill: true,
+            data: [20, 80, 50, 130, 260, 240, 360, 210, 380],
+            maxBarThickness: 6
+          },
+          {
+            label: "Cloud services",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 0,
+            borderColor: "#ffce56",
+            borderWidth: 3,
+            backgroundColor: gradientStroke4,
+            fill: true,
+            data: [60, 120, 70, 160, 310, 310, 370, 250, 420],
             maxBarThickness: 6
           },
         ],

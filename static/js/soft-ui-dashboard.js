@@ -591,4 +591,14 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+/* Removed bar chart from DOM
+document.addEventListener('DOMContentLoaded', function () {
+  // Get the chart container
+  var chartContainer = document.getElementById('chart-bars');
 
+  // Remove the chart container from the DOM
+  if (chartContainer) {
+    chartContainer.parentElement.parentElement.remove();
+  }
+});
+*/
