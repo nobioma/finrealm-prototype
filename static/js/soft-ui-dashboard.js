@@ -568,20 +568,10 @@ document.addEventListener('DOMContentLoaded', function () {
       // Get the input value and convert it to lowercase
       const pageName = searchInput.value.trim().toLowerCase();
 
-      // Define a mapping of page names to their URLs
-      const pageMappings = {
-        'dashboard': '../pages/dashboard.html',
-        'vr news': '../pages/virtual-reality.html',
-        'finconnect': '../pages/connect.html',
-        'profile': '../pages/profile.html',
-        'invest': '../pages/invest.html'
-        // Add more mappings as needed
-      };
-
       // Check if the entered page name exists in the mappings
-      if (pageMappings[pageName]) {
+      if (window.pageMappings[pageName]) {
         // Redirect to the corresponding page
-        window.location.href = pageMappings[pageName];
+        window.location.href = window.pageMappings[pageName];
       } else {
         // Optionally handle the case where the page name is not found
         alert('Page not found.');

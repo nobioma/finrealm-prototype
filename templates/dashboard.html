@@ -41,6 +41,17 @@
 </head>
 
 <body class="g-sidenav-show  bg-gray-100">
+  <script>
+    window.pageMappings = {
+      'dashboard': "{{ url_for('dashboard') }}",
+      'vr news': "{{ url_for('news') }}",
+      'finconnect': "{{ url_for('connect') }}",
+      'profile': "{{ url_for('profile') }}",
+      'invest': "{{ url_for('invest') }}"
+      // Add more mappings as needed
+    };
+  </script>
+  
   <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 "
     id="sidenav-main">
     <div class="sidenav-header">
