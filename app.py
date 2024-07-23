@@ -3,7 +3,7 @@
 import os
 import logging
 from logging.handlers import RotatingFileHandler
-from flask import Flask, render_template, redirect, url_for, flash, request
+from flask import Flask, render_template, redirect, url_for, flash, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager, UserMixin, login_user, logout_user, current_user, login_required
@@ -20,7 +20,8 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY') or 'you-will-never-guess'
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL') or 'sqlite:///stock_portfolio.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['ALPHA_VANTAGE_API_KEY'] = os.environ.get('ALPHA_VANTAGE_API_KEY') or 'your_api_key_here'
+app.config['ALPHA_VANTAGE_API_KEY'] = os.environ.get('ALPHA_VANTAGE_API_KEY') or 'HGRQOT3CA15JXMOC'
+ALPHA_VANTAGE_API_KEY = 'HGRQOT3CA15JXMOC'
 
 # Print all config keys to the terminal
 print("Configuration Keys:")
@@ -144,6 +145,28 @@ def dashboard():
         '2024-07-20': {'symbol': 'AMZN', 'price': '3400.00'}
     }
     return render_template('dashboard.html', title='Dashboard', stocks=stocks)
+
+# Fetch stock data from Alpha Vantage
+@app.route('/fetch-stock-data', methods=['GET'])
+def fetch_stock_data():
+    symbol = 'IBM'  # You can change this to any stock symbol you want to test
+    url = f'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={symbol}&apikey={ALPHA_VANTAGE_API_KEY}'
+    
+    try:
+        response = requests.get(url)
+        response.raise_for_status()  # Raise an error for bad status codes
+        data = response.json()
+        
+        # Print data to the console
+        print(data)
+
+        # Optionally, return the data as a JSON response
+        return jsonify(data)
+
+    except requests.exceptions.RequestException as e:
+        # Print the error message to the console
+        print(f"Error fetching data: {e}")
+        return jsonify({'error': str(e)}), 500
 
 @app.route('/news')
 def news():

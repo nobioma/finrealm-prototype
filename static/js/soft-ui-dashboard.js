@@ -540,6 +540,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Function to toggle the card
   function toggleCardFunction(event) {
+    // Check if the event target is a contenteditable element
+    if (event.target.closest('[contenteditable="true"]')) {
+      return; // Do nothing if clicked inside a contenteditable element
+    }
+
     // Get the content from the clicked card
     const content = event.currentTarget.innerHTML;
 
@@ -555,7 +560,16 @@ document.addEventListener('DOMContentLoaded', function () {
   clickableCards.forEach(card => {
     card.addEventListener('click', toggleCardFunction);
   });
+
+  // Add event listeners to all contenteditable elements to stop propagation
+  const editableElements = document.querySelectorAll('[contenteditable="true"]');
+  editableElements.forEach(editable => {
+    editable.addEventListener('click', function (event) {
+      event.stopPropagation(); // Stop the click event from bubbling up
+    });
+  });
 });
+
 
 // Page searching
 document.addEventListener('DOMContentLoaded', function () {
@@ -602,3 +616,47 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 */
+
+// Edit stock tickers and data
+document.querySelectorAll('[contenteditable="true"]').forEach(element => {
+  element.addEventListener('keydown', function (event) {
+    if (event.key === 'Enter') {
+      event.preventDefault(); // Prevent default behavior
+
+      const newSymbol = this.innerText.trim(); // Get the new symbol
+      const id = this.getAttribute('data-id'); // Get the card ID
+
+      // Validate the symbol if needed
+      if (newSymbol === '') {
+        alert('Stock symbol cannot be empty');
+        return;
+      }
+
+      // Update the symbol in the card
+      this.setAttribute('data-symbol', newSymbol);
+      this.innerText = newSymbol;
+
+      // Fetch new data from the API
+      fetchStockData(newSymbol, id);
+    }
+  });
+});
+
+// Function to fetch stock data and update the card
+function fetchStockData(symbol, cardId) {
+  fetch('/fetch-stock-data', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ symbol: symbol })
+  })
+    .then(response => response.json())
+    .then(data => {
+      const card = document.getElementById(`click-card-${cardId}`);
+      if (card) {
+        card.querySelector('.price').innerText = `$${data.price}`;
+      }
+    })
+    .catch(error => console.error('Error fetching stock data:', error));
+}

@@ -279,4 +279,30 @@ body {
 
 .bg-gradient-gold {
     background-image: linear-gradient(0deg, #b59410 100%, #b59410 100%);
-} 
+}
+
+.card .numbers p[contenteditable="true"] {
+    cursor: text;
+    /* Shows text cursor when hovering */
+    /* Initial border, will change on hover */
+    /* Slight padding */
+}
+
+.card .numbers p[contenteditable="true"]:hover {
+    border: 1px solid #b59410;
+    padding: 5px;
+    /* Rounded corners for the border */
+    border-radius: 10px;
+    
+}
+
+.card .numbers p[contenteditable="true"]:focus {
+    outline: none;
+    /* Removes default outline */
+    border: 1px solid #cc9934;
+    /* Custom border on focus */
+    padding: 5px;
+    /* Space between the border and the text */
+    border-radius: 10px;
+    /* Ensure border-radius is applied on focus */
+}
