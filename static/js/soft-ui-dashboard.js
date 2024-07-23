@@ -54,6 +54,7 @@ var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
 
 document.addEventListener("DOMContentLoaded", function () {
   // Handle Fixed Plugin 1
+  /*
   var fixedPlugin1 = document.getElementById('settings-plugin');
   var plugin1Button = fixedPlugin1.querySelector('.fixed-plugin-button');
   var plugin1Card = fixedPlugin1.querySelector('.card');
@@ -91,6 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
       fixedPlugin1.classList.remove('show');
     }
   });
+  */
   // Handle Fixed Plugin 2
   var fixedPlugin2 = document.getElementById('chat-plugin');
   var plugin2Button = fixedPlugin2.querySelector('.fixed-plugin-button');

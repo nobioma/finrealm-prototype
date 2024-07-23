@@ -55,9 +55,11 @@ body {
     fill: #b59410;
 }
 
+/*
 .bg-gradient-primary {
     background-image: none;
 }
+*/
 
 .min-height-banner {
     min-height: 150px !important;
@@ -79,9 +81,11 @@ body {
     fill: #b59410;
 }
 
+/*
 .text-gradient.text-dark {
     background-image: linear-gradient(310deg, #b59410 0%, #b59410 100%);
 }
+*/
 
 .btn {
     color: white;
@@ -206,11 +210,11 @@ body {
 }
 
 /* Sign in page */
-.text-gradient.text-info {
+.text-gradient.text-info.sign-in {
     background-image: linear-gradient(310deg, #b59410, #cc9934);
 }
 
-.bg-gradient-info {
+.btn.bg-gradient-info {
     background-image: linear-gradient(310deg, #b59410 0%, #cc9934 100%);
 }
 
@@ -272,3 +276,7 @@ body {
 .card.bg-transparent {
     background-color: rgba(0, 0, 0, 0.5) !important;
 }
+
+.bg-gradient-gold {
+    background-image: linear-gradient(0deg, #b59410 100%, #b59410 100%);
+} 

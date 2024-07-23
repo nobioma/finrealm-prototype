@@ -26,17 +26,17 @@
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
   <!-- Nucleo Icons -->
-  <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
-  <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+  <link href="{{ url_for('static', filename='css/nucleo-icons.css') }}" rel="stylesheet" />
+  <link href="{{ url_for('static', filename='css/nucleo-svg.css') }}" rel="stylesheet" />
   <!-- Font Awesome Icons -->
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-  <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+  <link href="{{ url_for('static', filename='css/nucleo-svg.css') }}" rel="stylesheet" />
   <!-- CSS Files -->
-  <link id="pagestyle" href="../assets/css/soft-ui-dashboard.css?v=1.0.7" rel="stylesheet" />
+  <link id="pagestyle" href="{{ url_for('static', filename='css/soft-ui-dashboard.css') }}?v=1.0.7" rel="stylesheet" />
   <!-- Nepcha Analytics (nepcha.com) -->
   <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
   <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
-  <link rel="stylesheet" href="../assets/css/edited-styling.css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/edited-styling.css') }}" />
 </head>
 
 <body class="g-sidenav-show bg-gray-100">
@@ -113,7 +113,7 @@
         <li class="nav-item">
           <a class="nav-link  active" href="../pages/profile.html">
             <div
-              class="icon icon-shape icon-sm shadow border-radius-md bg-gray text-center me-2 d-flex align-items-center justify-content-center">
+              class="icon icon-shape icon-sm shadow border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 46 42" version="1.1" xmlns="http://www.w3.org/2000/svg"
                 xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>customer-support</title>
