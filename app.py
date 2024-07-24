@@ -20,7 +20,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY') or 'you-will-never-guess'
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL') or 'sqlite:///stock_portfolio.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['ALPHA_VANTAGE_API_KEY'] = os.environ.get('ALPHA_VANTAGE_API_KEY') or 'HGRQOT3CA15JXMOC'
+app.config['ALPHA_VANTAGE_API_KEY'] = os.environ.get('ALPHA_VANTAGE_API_KEY') or 'FK1RL7DOQ9FVXK0U'
 ALPHA_VANTAGE_API_KEY = 'HGRQOT3CA15JXMOC'
 
 # Print all config keys to the terminal
@@ -147,10 +147,15 @@ def dashboard():
     return render_template('dashboard.html', title='Dashboard', stocks=stocks)
 
 # Fetch stock data from Alpha Vantage
-@app.route('/fetch-stock-data', methods=['GET'])
+@app.route('/fetch-stock-data')
 def fetch_stock_data():
-    symbol = 'IBM'  # You can change this to any stock symbol you want to test
-    url = f'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={symbol}&apikey={ALPHA_VANTAGE_API_KEY}'
+    # if symbol == 'MSFT':
+
+    default_symbol = 'MSFT'
+    symbol = request.args.get('symbol', default_symbol)
+    if not symbol:
+        return jsonify({'error': 'Symbol is required'}), 400
+    url = f'https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol={symbol}&apikey={ALPHA_VANTAGE_API_KEY}'
     
     try:
         response = requests.get(url)

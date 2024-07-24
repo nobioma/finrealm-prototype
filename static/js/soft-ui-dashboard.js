@@ -637,13 +637,41 @@ document.querySelectorAll('[contenteditable="true"]').forEach(element => {
       this.innerText = newSymbol;
 
       // Fetch new data from the API
-      fetchStockData(newSymbol, id);
+      fetch(`/fetch-stock-data?symbol=${newSymbol}`)
+        .then(response => response.json()) // Parse the JSON data from the response
+        .then(data => {
+          if (data.error) { // Check if there is an error in the response
+            alert(data.error); // Display the error message
+            return; // Exit the function if there is an error
+          }
+
+          // Assuming data is structured as shown in your example
+          const monthlyData = data['Monthly Time Series'];
+
+          // Extract the dates and find the most recent date
+          const dates = Object.keys(monthlyData);
+          const mostRecentDate = dates.sort((a, b) => new Date(b) - new Date(a))[0];
+
+          // Get the closing price for the most recent date
+          const mostRecentPrice = monthlyData[mostRecentDate]['4. close'];
+
+          // Update the price in the card
+          const card = document.getElementById(`click-card-${id}`);
+          if (card) {
+            card.querySelector('.price').innerText = `$${mostRecentPrice}`; // Setting the price with a dollar sign
+          }
+        })
+        .catch(error => console.error('Error fetching stock data:', error));
     }
+
   });
 });
 
 // Function to fetch stock data and update the card
-function fetchStockData(symbol, cardId) {
+function fetchStockData(newSymbol, cardId) {
+  
+  
+
   fetch('/fetch-stock-data', {
     method: 'POST',
     headers: {
@@ -655,7 +683,11 @@ function fetchStockData(symbol, cardId) {
     .then(data => {
       const card = document.getElementById(`click-card-${cardId}`);
       if (card) {
-        card.querySelector('.price').innerText = `$${data.price}`;
+        const priceElement = card.querySelector('.price');
+        if (priceElement) {
+          // Update the price element with the new stock price
+          priceElement.innerText = `$${data.price}`;
+        }
       }
     })
     .catch(error => console.error('Error fetching stock data:', error));
