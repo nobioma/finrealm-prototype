@@ -14,14 +14,18 @@ import io
 import base64
 import random
 from datetime import datetime, timedelta
+import openai
+from openai import OpenAI
+
 
 # Configuration
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY') or 'you-will-never-guess'
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL') or 'sqlite:///stock_portfolio.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['ALPHA_VANTAGE_API_KEY'] = os.environ.get('ALPHA_VANTAGE_API_KEY') or 'FK1RL7DOQ9FVXK0U'
-ALPHA_VANTAGE_API_KEY = 'HGRQOT3CA15JXMOC'
+app.config['ALPHA_VANTAGE_API_KEY'] = os.environ.get('ALPHA_VANTAGE_API_KEY') or 'your_api_key_here'
+app.config['CHAT_GPT_KEY'] = os.environ.get('CHAT_KEY') or 'your_chat_key_here'
+
 
 # Print all config keys to the terminal
 print("Configuration Keys:")
@@ -149,13 +153,12 @@ def dashboard():
 # Fetch stock data from Alpha Vantage
 @app.route('/fetch-stock-data')
 def fetch_stock_data():
-    # if symbol == 'MSFT':
-
-    default_symbol = 'MSFT'
+    api_key = app.config['ALPHA_VANTAGE_API_KEY']
+    # default_symbol = 'MSFT'
     symbol = request.args.get('symbol', default_symbol)
     if not symbol:
         return jsonify({'error': 'Symbol is required'}), 400
-    url = f'https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol={symbol}&apikey={ALPHA_VANTAGE_API_KEY}'
+    url = f'https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol={symbol}&apikey={api_key}'
     
     try:
         response = requests.get(url)
@@ -171,6 +174,34 @@ def fetch_stock_data():
     except requests.exceptions.RequestException as e:
         # Print the error message to the console
         print(f"Error fetching data: {e}")
+        return jsonify({'error': str(e)}), 500
+    
+# Chat functionality
+@app.route('/chat', methods=['POST'])
+def chat():
+    data = request.get_json()
+    print(data)
+    user_message = data.get('message')
+    
+    if not user_message:
+        return jsonify({'error': 'No message provided'}), 400
+
+    client = OpenAI(
+        api_key='your-',
+    )
+    
+    # Create a response from ChatGPT
+    try:
+        completion = client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "You are a financial advisor who is helping people learn about finance and investing. However, these people aren't very experienced in finance, so explain everything in an easy to understand way. Also, keep each response to 50 words or less."},
+                {"role": "user", "content": user_message}
+            ]
+        )
+        chat_response = completion.choices[0].message.content # Adjust if needed
+        return jsonify({'response': chat_response})
+    except Exception as e:
         return jsonify({'error': str(e)}), 500
 
 @app.route('/news')

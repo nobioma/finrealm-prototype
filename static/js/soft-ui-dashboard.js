@@ -479,23 +479,30 @@ function sidenavTypeOnResize() {
   }
 }
 
-// Typewriter effect on text
+// Chat functionality with responses to user
 document.addEventListener('DOMContentLoaded', function () {
   // Function to display messages with a typewriter effect
-  function displayMessage(message) {
+  function displayMessage(message, sender) {
     const messagesContainer = document.getElementById('chatbox-messages');
 
-    // Clear previous messages
-    messagesContainer.innerHTML = '';
-
+    // Create a new message element
     const newMessage = document.createElement('div');
     newMessage.className = 'chat-message';
+
+    // Add sender information
+    const senderElement = document.createElement('strong');
+    senderElement.textContent = sender + ': ';
+    newMessage.appendChild(senderElement);
+
+    // Add the message text
+    const messageText = document.createElement('span');
+    newMessage.appendChild(messageText);
     messagesContainer.appendChild(newMessage);
 
     let i = 0;
     function typeWriter() {
       if (i < message.length) {
-        newMessage.innerHTML += message.charAt(i);
+        messageText.innerHTML += message.charAt(i);
         i++;
         setTimeout(typeWriter, 25); // Adjust typing speed (milliseconds)
       }
@@ -520,8 +527,28 @@ document.addEventListener('DOMContentLoaded', function () {
         // Clear the input field
         input.value = '';
 
-        // Display the new message with typewriter effect
-        displayMessage(message);
+        // Display the user message with typewriter effect
+        displayMessage(message, 'You');
+
+        // Send the message to the server
+        fetch('/chat', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ message: message })
+        })
+          .then(response => response.json())
+          .then(data => {
+            if (data.error) {
+              console.error('Error:', data.error);
+              return;
+            }
+
+            // Display the bot's response with typewriter effect
+            displayMessage(data.response, 'Bot');
+          })
+          .catch(error => console.error('Error:', error));
       }
     }
   }
@@ -692,3 +719,40 @@ function fetchStockData(newSymbol, cardId) {
     })
     .catch(error => console.error('Error fetching stock data:', error));
 }
+
+// Edit FinSpace functionality
+document.addEventListener('DOMContentLoaded', function () {
+  const editButton = document.getElementById('edit-button');
+  const editableText = document.getElementById('editable-text');
+
+  let isEditing = false;
+
+  editButton.addEventListener('click', function () {
+    if (isEditing) {
+      // Save the changes
+      editableText.contentEditable = "false";
+      editButton.querySelector('i').classList.remove('fa-save');
+      editButton.querySelector('i').classList.add('fa-user-edit');
+    } else {
+      // Enable editing
+      editableText.contentEditable = "true";
+      editableText.focus();
+      editButton.querySelector('i').classList.remove('fa-user-edit');
+      editButton.querySelector('i').classList.add('fa-save');
+    }
+
+    isEditing = !isEditing;
+  });
+
+  editableText.addEventListener('keydown', function (event) {
+    if (event.key === 'Enter') {
+      event.preventDefault(); // Prevent default behavior
+
+      // Save the changes
+      editableText.contentEditable = "false";
+      editButton.querySelector('i').classList.remove('fa-save');
+      editButton.querySelector('i').classList.add('fa-user-edit');
+      isEditing = false;
+    }
+  });
+});

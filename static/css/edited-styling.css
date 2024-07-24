@@ -273,6 +273,14 @@ body {
     /* Enable vertical scrolling */
 }
 
+.card-body--scrollable-finspace {
+    height: 250px;
+    /* Set a fixed height for the card body */
+    /* Fixed height for scrollable content */
+    overflow-y: auto;
+    /* Enable vertical scrolling */
+}
+
 .card.bg-transparent {
     background-color: rgba(0, 0, 0, 0.5) !important;
 }
@@ -293,7 +301,6 @@ body {
     padding: 5px;
     /* Rounded corners for the border */
     border-radius: 10px;
-    
 }
 
 .card .numbers p[contenteditable="true"]:focus {
@@ -305,4 +312,22 @@ body {
     /* Space between the border and the text */
     border-radius: 10px;
     /* Ensure border-radius is applied on focus */
+}
+
+
+[contenteditable="true"] {
+    outline: none;
+    /* Removes the default outline */
+    border: none;
+    /* Removes any border */
+}
+
+/* Optional: Adding a custom style when editable */
+[contenteditable="true"]:focus {
+    outline: none;
+    /* Ensure the outline is removed when focused */
+    border: 1px solid #cc9934;
+    /* Optional: Add a custom border if desired */
+    padding: 15px;
+    border-radius: 10px;
 }
