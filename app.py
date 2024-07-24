@@ -154,8 +154,9 @@ def dashboard():
 @app.route('/fetch-stock-data')
 def fetch_stock_data():
     api_key = app.config['ALPHA_VANTAGE_API_KEY']
+    api_key ='51WSL62ZDHM8DF23'
     # default_symbol = 'MSFT'
-    symbol = request.args.get('symbol', default_symbol)
+    symbol = request.args.get('symbol')
     if not symbol:
         return jsonify({'error': 'Symbol is required'}), 400
     url = f'https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol={symbol}&apikey={api_key}'
@@ -187,7 +188,7 @@ def chat():
         return jsonify({'error': 'No message provided'}), 400
 
     client = OpenAI(
-        api_key='your-',
+        api_key='sk-proj-d6fATgVxZCQMderY4HZ4T3BlbkFJTrEBb9WdLvyvCb7QkB3q',
     )
     
     # Create a response from ChatGPT

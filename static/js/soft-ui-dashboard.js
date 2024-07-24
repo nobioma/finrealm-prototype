@@ -513,44 +513,60 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // Function to handle sending messages
-  function sendMessage(event) {
-    if (event.key === 'Enter') {
+  function sendMessage(event, customMessage = null) {
+    if (event && event.key !== 'Enter') {
+      return;
+    }
+    if (event && event.key === 'Enter') {
       // Prevent the default form submission behavior
       event.preventDefault();
-
+    }
       // Get the input value
       const input = document.getElementById('chatbox-input');
-      const message = input.value.trim();
+      const message = customMessage || input.value.trim();
 
       // Check if the input is not empty
-      if (message) {
-        // Clear the input field
-        input.value = '';
+    if (message) {
+      // Clear the input field
+      if (!customMessage) input.value = '';
 
-        // Display the user message with typewriter effect
-        displayMessage(message, 'You');
+      // Display the user message with typewriter effect
+      displayMessage(message, 'You');
 
-        // Send the message to the server
-        fetch('/chat', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ message: message })
+      // Send the message to the server
+      fetch('/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ message: message })
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.error) {
+            console.error('Error:', data.error);
+            return;
+          }
+
+          // Display the bot's response with typewriter effect
+          displayMessage(data.response, 'Bot');
         })
-          .then(response => response.json())
-          .then(data => {
-            if (data.error) {
-              console.error('Error:', data.error);
-              return;
-            }
-
-            // Display the bot's response with typewriter effect
-            displayMessage(data.response, 'Bot');
-          })
-          .catch(error => console.error('Error:', error));
-      }
+        .catch(error => console.error('Error:', error));
     }
+  }
+
+  // Sends this to chat when 'Learn More' button is clicked
+  function customSend() {
+    const customMessage = 'What is Forex Trading?';
+    console.log('Custom send reached!!!')
+    sendMessage(null, customMessage);
+    // customMessage = ''
+  }
+  const icon = document.querySelector('.fixed-plugin-2-button-nav');
+  if (icon) {
+    console.log('Icon initialized!');
+    icon.addEventListener('click', customSend);
+
   }
 
   // Optionally, add a sample message to test the typewriter effect

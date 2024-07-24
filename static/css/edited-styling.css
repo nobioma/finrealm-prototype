@@ -113,8 +113,12 @@ body {
 
 /* Chatbox Styling */
 .chatbox {
+    height: 400px;
+    /* Adjust this height as needed */
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
+    /* Add vertical scrolling when content overflows */
     flex: 1;
     /* Make the chatbox take up remaining space */
     /* Padding will be handled by child elements */
@@ -330,4 +334,9 @@ body {
     /* Optional: Add a custom border if desired */
     padding: 15px;
     border-radius: 10px;
+}
+
+.card-body-chat {
+    position: relative;
+    /* Ensure that the card-body can be used as a reference for positioning */
 }
