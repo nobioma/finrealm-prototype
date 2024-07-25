@@ -154,7 +154,7 @@ def dashboard():
 @app.route('/fetch-stock-data')
 def fetch_stock_data():
     api_key = app.config['ALPHA_VANTAGE_API_KEY']
-    api_key ='51WSL62ZDHM8DF23'
+    api_key ='TYFZV910OF28JIHP'
     # default_symbol = 'MSFT'
     symbol = request.args.get('symbol')
     if not symbol:
@@ -177,6 +177,34 @@ def fetch_stock_data():
         print(f"Error fetching data: {e}")
         return jsonify({'error': str(e)}), 500
     
+# Search routing for tickers
+@app.route('/search')
+def search():
+    api_key ='TYFZV910OF28JIHP'
+    keyword = request.args.get('keyword')
+
+    # Construct the URL with the provided keyword
+    url = f'https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords={keyword}&apikey={api_key}'
+    response = requests.get(url)
+    
+    # Parse the JSON response
+    try:
+        data = response.json()
+    except ValueError:
+        return jsonify({'error': 'Invalid JSON response from the API'}), 500
+    
+    # Print the data to check its structure
+    print(data)
+    
+    # Access 'bestMatches' and handle the case where it's missing
+    if 'bestMatches' in data:
+        best_matches = data['bestMatches']
+    else:
+        best_matches = []
+    
+    return jsonify(best_matches)
+
+
 # Chat functionality
 @app.route('/chat', methods=['POST'])
 def chat():
