@@ -297,7 +297,7 @@
     <div class="container-fluid py-4">
       <div class="row">
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-          <div class="card clickable-card clickable" id="click-card-1">
+          <div class="card clickable-card clickable removable-line" id="click-card-1" data-index="0">
             <div class="card-body p-3">
               <div class="row">
                 <div class="col-8">
@@ -314,7 +314,7 @@
           </div>
         </div>
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-          <div class="card clickable-card clickable" id="click-card-2">
+          <div class="card clickable-card clickable removable-line" id="click-card-2" data-index="1">
             <div class="card-body p-3">
               <div class="row">
                 <div class="col-8">
@@ -330,14 +330,14 @@
           </div>
         </div>
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-          <div class="card clickable-card clickable" id="click-card-3">
+          <div class="card clickable-card clickable removable-line" id="click-card-3" data-index="2">
             <div class="card-body p-3">
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
                     <p class="text-sm subtext mb-0 text-capitalize font-weight-bold" contenteditable="true" data-id="2" data-symbol="NVDA">NVDA</p>
                     <h5 class="font-weight-bolder mb-0 header price">
-                      <span class="text-danger text-sm font-weight-bolder"></span>
+                      <span class="text-success text-sm font-weight-bolder"></span>
                     </h5>
                   </div>
                 </div>
@@ -346,14 +346,13 @@
           </div>
         </div>
         <div class="col-xl-3 col-sm-6">
-          <div class="card clickable-card clickable" id="click-card-4">
+          <div class="card clickable-card clickable removable-line" id="click-card-4" data-index="3">
             <div class="card-body p-3">
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
                     <p class="text-sm subtext mb-0 text-capitalize font-weight-bold" contenteditable="true" data-id="3" data-symbol="MSFT">MSFT</p>
                     <h5 class="font-weight-bolder mb-0 header price">
-                      CLOSE
                       <span class="text-success text-sm font-weight-bolder"></span>
                     </h5>
                   </div>
@@ -937,89 +936,86 @@
     });
 
 
-    let chartInstance; // Declared chart instance variable
+    // Define your chart instance variable
+    let chartInstance;
 
+    // Get the canvas context
     var ctx2 = document.getElementById("chart-line").getContext("2d");
 
+    // Create gradient colors for the chart lines
     var gradientStroke1 = ctx2.createLinearGradient(0, 230, 0, 50);
-
     gradientStroke1.addColorStop(1, 'rgba(203,12,159,0.2)');
     gradientStroke1.addColorStop(0.2, 'rgba(72,72,176,0.0)');
-    gradientStroke1.addColorStop(0, 'rgba(203,12,159,0)'); //purple colors
+    gradientStroke1.addColorStop(0, 'rgba(203,12,159,0)'); // Purple colors
 
     var gradientStroke2 = ctx2.createLinearGradient(0, 230, 0, 50);
-
     gradientStroke2.addColorStop(1, 'rgba(20,23,39,0.2)');
     gradientStroke2.addColorStop(0.2, 'rgba(72,72,176,0.0)');
-    gradientStroke2.addColorStop(0, 'rgba(20,23,39,0)'); //purple colors
+    gradientStroke2.addColorStop(0, 'rgba(20,23,39,0)'); // Dark colors
 
     var gradientStroke3 = ctx2.createLinearGradient(0, 230, 0, 50);
-    
     gradientStroke3.addColorStop(1, 'rgba(75,192,192,0.2)');
     gradientStroke3.addColorStop(0.2, 'rgba(75,192,192,0.0)');
-    gradientStroke3.addColorStop(0, 'rgba(75,192,192,0)');
+    gradientStroke3.addColorStop(0, 'rgba(75,192,192,0)'); // Teal colors
 
     var gradientStroke4 = ctx2.createLinearGradient(0, 230, 0, 50);
-
     gradientStroke4.addColorStop(1, 'rgba(255,206,86,0.2)');
     gradientStroke4.addColorStop(0.2, 'rgba(255,206,86,0.0)');
-    gradientStroke4.addColorStop(0, 'rgba(255,206,86,0)');
+    gradientStroke4.addColorStop(0, 'rgba(255,206,86,0)'); // Yellow colors
 
-
-
+    // Initialize the chart with the data for January to July
     chartInstance = new Chart(ctx2, {
       type: "line",
       data: {
-        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"], // Labels for January to July
         datasets: [{
-            label: "Mobile apps",
-            tension: 0.4,
-            borderWidth: 0,
-            pointRadius: 0,
-            borderColor: "#cb0c9f",
-            borderWidth: 3,
-            backgroundColor: gradientStroke1,
-            fill: true,
-            data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
-            maxBarThickness: 6
-
-          },
-          {
-            label: "Websites",
-            tension: 0.4,
-            borderWidth: 0,
-            pointRadius: 0,
-            borderColor: "#3A416F",
-            borderWidth: 3,
-            backgroundColor: gradientStroke2,
-            fill: true,
-            data: [30, 90, 40, 140, 290, 290, 340, 230, 400],
-            maxBarThickness: 6
-          },
-          {
-            label: "Desktop apps",
-            tension: 0.4,
-            borderWidth: 0,
-            pointRadius: 0,
-            borderColor: "#4bc0c0",
-            borderWidth: 3,
-            backgroundColor: gradientStroke3,
-            fill: true,
-            data: [20, 80, 50, 130, 260, 240, 360, 210, 380],
-            maxBarThickness: 6
-          },
-          {
-            label: "Cloud services",
-            tension: 0.4,
-            borderWidth: 0,
-            pointRadius: 0,
-            borderColor: "#ffce56",
-            borderWidth: 3,
-            backgroundColor: gradientStroke4,
-            fill: true,
-            data: [60, 120, 70, 160, 310, 310, 370, 250, 420],
-            maxBarThickness: 6
-          },
+          label: "AAPL",
+          tension: 0.4,
+          borderWidth: 0,
+          pointRadius: 0,
+          borderColor: "#cb0c9f",
+          borderWidth: 3,
+          backgroundColor: gradientStroke1,
+          fill: true,
+          data: [0, 0, 0, 0, 0, 0, 0], // Data for January to July
+          maxBarThickness: 6
+        },
+        {
+          label: "GOOGL",
+          tension: 0.4,
+          borderWidth: 0,
+          pointRadius: 0,
+          borderColor: "#3A416F",
+          borderWidth: 3,
+          backgroundColor: gradientStroke2,
+          fill: true,
+          data: [0, 0, 0, 0, 0, 0, 0], // Data for January to July
+          maxBarThickness: 6
+        },
+        {
+          label: "NVDA",
+          tension: 0.4,
+          borderWidth: 0,
+          pointRadius: 0,
+          borderColor: "#4bc0c0",
+          borderWidth: 3,
+          backgroundColor: gradientStroke3,
+          fill: true,
+          data: [0, 0, 0, 0, 0, 0, 0], // Data for January to July
+          maxBarThickness: 6
+        },
+        {
+          label: "MSFT",
+          tension: 0.4,
+          borderWidth: 0,
+          pointRadius: 0,
+          borderColor: "#ffce56",
+          borderWidth: 3,
+          backgroundColor: gradientStroke4,
+          fill: true,
+          data: [0, 0, 0, 0, 0, 0, 0], // Data for January to July
+          maxBarThickness: 6
+        },
         ],
       },
       options: {
@@ -1078,7 +1074,7 @@
         },
       },
     });
-    // Function to update chart labels
+
     // Function to update the label for the specific dataset
     function updateChartLabel(index, newLabel) {
       if (chartInstance && chartInstance.data.datasets[index]) {
@@ -1086,6 +1082,52 @@
         chartInstance.update(); // Refresh the chart to reflect changes
       }
     }
+    // Functino to update the current dataset
+    function updateChartDataset(chartInstance, datasetIndex, data) {
+      const chart = chartInstance;
+      const labels = Object.keys(data);
+      const dataPoints = Object.values(data).map(item => parseFloat(item['4. close']));
+
+      // Update the chart data
+      // chart.data.labels = labels;
+      chart.data.datasets[datasetIndex].data = dataPoints;
+
+      // Update the chart
+      chart.update();
+    }
+
+    // Function to filter data
+    function filterDataFromJanuaryToCurrentMonth(monthlyData) {
+      const filteredData = {};
+      const startMonth = 1; // January
+      const endMonth = 7; // July
+      const currentYear = new Date().getFullYear();
+
+      for (const [date, values] of Object.entries(monthlyData)) {
+        const [year, month] = date.split('-').map(Number);
+
+        // Include data only for the current year from January to July
+        if (year === currentYear && month >= startMonth && month <= endMonth) {
+          filteredData[date] = {
+            "4. close": values["4. close"]
+          };
+        }
+    
+      }
+
+      // Sort the filtered data in ascending order
+      const sortedFilteredData = Object.entries(filteredData)
+        .sort(([dateA], [dateB]) => new Date(dateA) - new Date(dateB))
+        .reduce((obj, [date, value]) => {
+          obj[date] = value;
+          return obj;
+        }, {});
+
+      return sortedFilteredData;
+    }
+
+
+
   </script>
   <script>
     var win = navigator.platform.indexOf('Win') > -1;

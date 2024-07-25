@@ -576,7 +576,7 @@ document.addEventListener('DOMContentLoaded', function () {
   window.sendMessage = sendMessage;
 });
 
-// Stock data toggling
+/* // Stock data toggling
 document.addEventListener('DOMContentLoaded', function () {
   // Get the card to be toggled
   const toggleCard = document.getElementById('toggle-card');
@@ -611,7 +611,7 @@ document.addEventListener('DOMContentLoaded', function () {
       event.stopPropagation(); // Stop the click event from bubbling up
     });
   });
-});
+}); */
 
 
 // Page searching
@@ -665,7 +665,6 @@ document.querySelectorAll('[contenteditable="true"]').forEach((element) => {
   element.addEventListener('keydown', function (event) {
     if (event.key === 'Enter') {
       event.preventDefault(); // Prevent default behavior
-
       const newSymbol = this.innerText.trim(); // Get the new symbol
       const datasetIndex = parseInt(this.getAttribute('data-id')); // Get the dataset index
 
@@ -687,13 +686,55 @@ document.querySelectorAll('[contenteditable="true"]').forEach((element) => {
             alert(data.error); // Display the error message
             return; // Exit the function if there is an error
           }
-
+          /* console.log('we are getting to before data prompting')
+          const data = {
+            'Meta Data': {
+              '1. Information': 'Monthly Prices (open, high, low, close) and Volumes',
+              '2. Symbol': 'AAPL',
+              '3. Last Refreshed': '2024-07-24',
+              '4. Time Zone': 'US/Eastern'
+            },
+            'Monthly Time Series': {
+              '2024-07-24': {
+                '1. open': '212.0900',
+                '2. high': '237.2300',
+                '3. low': '211.9200',
+                '4. close': '218.5400',
+                '5. volume': '932208953'
+              },
+              '2024-06-28': {
+                '1. open': '192.9000',
+                '2. high': '220.2000',
+                '3. low': '192.1500',
+                '4. close': '210.6200',
+                '5. volume': '1723984420'
+              },
+              '2024-05-31': {
+                '1. open': '169.5800',
+                '2. high': '193.0000',
+                '3. low': '169.1100',
+                '4. close': '192.2500',
+                '5. volume': '1336570142'
+              },
+              '1911-04-31': {
+                '1. open': '169.5800',
+                '2. high': '193.0000',
+                '3. low': '169.1100',
+                '4. close': '192.2500',
+                '5. volume': '1336570142'
+              }
+    
+            }
+          } */
           // Assuming data is structured as shown in your example
           const monthlyData = data['Monthly Time Series'];
 
           // Extract the dates and find the most recent date
           const dates = Object.keys(monthlyData);
           const mostRecentDate = dates.sort((a, b) => new Date(b) - new Date(a))[0];
+
+          // Filter and sort monthlyData by desired months within year
+          const filteredMonthlyData = filterDataFromJanuaryToCurrentMonth(monthlyData);
 
           // Get the closing price for the most recent date
           const mostRecentPrice = monthlyData[mostRecentDate]['4. close'];
@@ -702,14 +743,19 @@ document.querySelectorAll('[contenteditable="true"]').forEach((element) => {
           const card = document.querySelector(`.col-8 .numbers [data-id="${datasetIndex}"]`).closest('.col-8');
           if (card) {
             card.querySelector('.price .text-success').innerText = `$${mostRecentPrice}`; // Setting the price with a dollar sign
+            // card.querySelector('.text-success').innerText = `Daily Price: $${mostRecentPrice}`; // Setting the daily price with a dollar sign (adjust as needed)
           }
+
+          // Update the chart dataset
+          updateChartDataset(chartInstance, datasetIndex, filteredMonthlyData);
 
           // Update the chart label for the relevant dataset
           updateChartLabel(datasetIndex, newSymbol);
         })
+          
         .catch(error => console.error('Error fetching stock data:', error));
     }
-  });
+  })
 });
 
 
@@ -735,6 +781,42 @@ function fetchStockData(newSymbol, cardId) {
     })
     .catch(error => console.error('Error fetching stock data:', error));
 }
+
+
+// 
+document.addEventListener('DOMContentLoaded', function () {
+  // Get all remove line on chart cards
+  const cards = document.querySelectorAll('.removable-line');
+
+  // Function to toggle the dataset visibility
+  function toggleDataset(event) {
+    // Get the index of the dataset from the clicked card
+    const card = event.currentTarget;
+    const datasetIndex = parseInt(card.getAttribute('data-index'), 10);
+
+    // Get the dataset from the chart
+    const dataset = chartInstance.data.datasets[datasetIndex];
+
+    // Toggle the visibility of the dataset
+    dataset.hidden = !dataset.hidden;
+
+    // Update the chart
+    chartInstance.update();
+  }
+
+  // Add click event listener to each card
+  cards.forEach(card => {
+    card.addEventListener('click', toggleDataset);
+  });
+});
+
+
+
+
+
+
+
+
 
 // Edit FinSpace functionality
 document.addEventListener('DOMContentLoaded', function () {
@@ -789,3 +871,40 @@ document.addEventListener('DOMContentLoaded', function () {
     selection.removeAllRanges(); // Clear any existing selection
   }
 });
+
+/* // Mock function to simulate fetching and plotting
+function simulateFetchAndPlot() {
+  
+  };
+
+  const monthlyData = mockData['Monthly Time Series'];
+  const filteredData = filterDataFromJanuaryToCurrentMonth(monthlyData);
+  //console.log(filteredData);
+
+  /*const filteredData = {
+    "2024-01-31": { "4. close": "450.00" },
+    "2024-02-29": { "4. close": "155.00" },
+    "2024-03-31": { "4. close": "300.00" },
+    "2024-04-30": { "4. close": "165.00" },
+    "2024-05-31": { "4. close": "170.00" },
+    "2024-06-30": { "4. close": "175.00" },
+    "2024-07-31": { "4. close": "250.00" }
+  };
+
+  // Assuming you have a function to update the chart
+  updateChartDataset(chartInstance, 0, filteredData); // Example datasetIndex = 0
+
+  // Update chart label if needed
+  updateChartLabel(0, 'TEST0');
+  //updateChartLabel(1, 'TEST1');
+  //updateChartLabel(2, 'TEST2');
+  //updateChartLabel(3, 'TEST3');
+  //updateChartLabel(3, 'Test')
+
+
+
+
+window.onload = function () {
+  simulateFetchAndPlot();
+  console.log('Reached the onload');
+}; */
