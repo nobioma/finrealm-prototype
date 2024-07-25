@@ -397,3 +397,34 @@ body {
     border-right: 1px solid white !important;
     /* Default border style */
 }
+
+/* Style for the chat plugin button */
+.fixed-plugin-button {
+    background-color: transparent !important;
+    opacity: 0.75;
+    /* Set background color to black */
+    color: white;
+    /* Icon color */
+    border-radius: 50%;
+    /* Circular button */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    /* Optional shadow for better visibility */
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.fixed-plugin-button:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    /* Slightly lighter background on hover */
+    border-color: rgba(255, 255, 255, 0.5) !important;
+    /* Slightly lighter border on hover */
+}
+
+/* Change the icon color */
+.fixed-plugin-button .fa {
+    color: #cc9934;
+    /* Change this to the color you want for the icon */
+}
