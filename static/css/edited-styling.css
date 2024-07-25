@@ -201,11 +201,11 @@ body {
 
 /* Search bar box coloring */
 .form-control:focus {
-    color: #ffffff;
-    background-color: transparent;
-    border-color: #d2d6da;
-    outline: 0;
-    box-shadow: 0 0 0 0px #ffffff;
+    color: #ffffff !important;
+    background-color: transparent !important;
+    border-color: #d2d6da !important;
+    outline: 0 !important;
+    box-shadow: 0 0 0 0px #ffffff !important;
 }
 
 .input-group .form-control:focus {
@@ -339,4 +339,17 @@ body {
 .card-body-chat {
     position: relative;
     /* Ensure that the card-body can be used as a reference for positioning */
+}
+
+/* Remove the default focus outline for all focusable elements */
+*:focus {
+    outline: none;
+}
+
+/* Add a custom border and box-shadow for all focusable elements */
+*:focus {
+    border: 1px solid #cc9934;
+    /* Change to your desired color */
+    box-shadow: 0 0 2px #cc9934;
+    /* Optional: add a shadow to make it stand out */
 }

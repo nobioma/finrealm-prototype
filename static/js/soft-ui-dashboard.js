@@ -661,13 +661,13 @@ document.addEventListener('DOMContentLoaded', function () {
 */
 
 // Edit stock tickers and data
-document.querySelectorAll('[contenteditable="true"]').forEach(element => {
+document.querySelectorAll('[contenteditable="true"]').forEach((element) => {
   element.addEventListener('keydown', function (event) {
     if (event.key === 'Enter') {
       event.preventDefault(); // Prevent default behavior
 
       const newSymbol = this.innerText.trim(); // Get the new symbol
-      const id = this.getAttribute('data-id'); // Get the card ID
+      const datasetIndex = parseInt(this.getAttribute('data-id')); // Get the dataset index
 
       // Validate the symbol if needed
       if (newSymbol === '') {
@@ -675,7 +675,7 @@ document.querySelectorAll('[contenteditable="true"]').forEach(element => {
         return;
       }
 
-      // Update the symbol in the card
+      // Update the symbol in the editable element
       this.setAttribute('data-symbol', newSymbol);
       this.innerText = newSymbol;
 
@@ -699,22 +699,22 @@ document.querySelectorAll('[contenteditable="true"]').forEach(element => {
           const mostRecentPrice = monthlyData[mostRecentDate]['4. close'];
 
           // Update the price in the card
-          const card = document.getElementById(`click-card-${id}`);
+          const card = document.querySelector(`.col-8 .numbers [data-id="${datasetIndex}"]`).closest('.col-8');
           if (card) {
-            card.querySelector('.price').innerText = `$${mostRecentPrice}`; // Setting the price with a dollar sign
+            card.querySelector('.price .text-success').innerText = `$${mostRecentPrice}`; // Setting the price with a dollar sign
           }
+
+          // Update the chart label for the relevant dataset
+          updateChartLabel(datasetIndex, newSymbol);
         })
         .catch(error => console.error('Error fetching stock data:', error));
     }
-
   });
 });
 
+
 // Function to fetch stock data and update the card
 function fetchStockData(newSymbol, cardId) {
-  
-  
-
   fetch('/fetch-stock-data', {
     method: 'POST',
     headers: {
@@ -747,11 +747,13 @@ document.addEventListener('DOMContentLoaded', function () {
     if (isEditing) {
       // Save the changes
       editableText.contentEditable = "false";
+      removeSelection(); // Remove any remaining selection or cursor
       editButton.querySelector('i').classList.remove('fa-save');
       editButton.querySelector('i').classList.add('fa-user-edit');
     } else {
       // Enable editing
       editableText.contentEditable = "true";
+      setCaretAtEnd(editableText);
       editableText.focus();
       editButton.querySelector('i').classList.remove('fa-user-edit');
       editButton.querySelector('i').classList.add('fa-save');
@@ -766,9 +768,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
       // Save the changes
       editableText.contentEditable = "false";
+      removeSelection(); // Remove any remaining selection or cursor
       editButton.querySelector('i').classList.remove('fa-save');
       editButton.querySelector('i').classList.add('fa-user-edit');
       isEditing = false;
     }
   });
+  
+  function setCaretAtEnd(element) {
+    const range = document.createRange();
+    const selection = window.getSelection();
+    range.selectNodeContents(element);
+    range.collapse(false);
+    selection.removeAllRanges();
+    selection.addRange(range);
+    element.focus();
+  }
+  function removeSelection() {
+    const selection = window.getSelection();
+    selection.removeAllRanges(); // Clear any existing selection
+  }
 });

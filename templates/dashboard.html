@@ -107,11 +107,12 @@
           </a>
         </li>
       -->
+      <!--
         <li class="nav-item">
           <a class="nav-link  " href="{{ url_for('connect') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-gray text-center me-2 d-flex align-items-center justify-content-center">
-              <!-- <svg width="12px" height="12px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"> -->
+              <svg width="12px" height="12px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>settings</title>
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                   <g transform="translate(-2020.000000, -442.000000)" fill="#FFFFFF" fill-rule="nonzero">
@@ -135,7 +136,6 @@
             <span class="nav-link-text ms-1 header">FinConnect</span>
           </a>
         </li>
-      <!--
         <li class="nav-item mt-3">
           <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder header">Account pages</h6>
         </li>
@@ -302,9 +302,9 @@
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm subtext mb-0 text-capitalize font-weight-bold" contenteditable="true" data-id="1" data-symbol="AAPL">AAPL</p>
+                    <p class="text-sm subtext mb-0 text-capitalize font-weight-bold" contenteditable="true" data-id="0" data-symbol="AAPL">AAPL</p>
                     <h5 class="font-weight-bolder mb-0 header price">
-                      CLOSE
+                      <!-- CLOSE -->
                       <span class="text-success text-sm font-weight-bolder"></span>
                     </h5>
                   </div>
@@ -319,9 +319,8 @@
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm subtext mb-0 text-capitalize font-weight-bold" contenteditable="true" data-id="2" data-symbol="GOOGL">GOOGL</p>
+                    <p class="text-sm subtext mb-0 text-capitalize font-weight-bold" contenteditable="true" data-id="1" data-symbol="GOOGL">GOOGL</p>
                     <h5 class="font-weight-bolder mb-0 header price">
-                      CLOSE
                       <span class="text-success text-sm font-weight-bolder"></span>
                     </h5>
                   </div>
@@ -336,9 +335,8 @@
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm subtext mb-0 text-capitalize font-weight-bold" contenteditable="true" data-id="3" data-symbol="NVDA">NVDA</p>
+                    <p class="text-sm subtext mb-0 text-capitalize font-weight-bold" contenteditable="true" data-id="2" data-symbol="NVDA">NVDA</p>
                     <h5 class="font-weight-bolder mb-0 header price">
-                      CLOSE
                       <span class="text-danger text-sm font-weight-bolder"></span>
                     </h5>
                   </div>
@@ -353,7 +351,7 @@
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm subtext mb-0 text-capitalize font-weight-bold" contenteditable="true" data-id="4" data-symbol="MSFT">MSFT</p>
+                    <p class="text-sm subtext mb-0 text-capitalize font-weight-bold" contenteditable="true" data-id="3" data-symbol="MSFT">MSFT</p>
                     <h5 class="font-weight-bolder mb-0 header price">
                       CLOSE
                       <span class="text-success text-sm font-weight-bolder"></span>
@@ -429,8 +427,7 @@
             <div class="card-header pb-0">
               <h6 class="header">Stock Trends</h6>
               <p class="text-sm">
-                <i class="fa fa-arrow-up text-success"></i>
-                <span class="font-weight-bold">4% more</span> in 2021
+                <span class="font-weight-bold">Monthy Time Series in 2024</span> (CLOSING)
               </p>
             </div>
             <div class="card-body p-3">
@@ -917,7 +914,7 @@
               padding: 15,
               font: {
                 size: 14,
-                family: "Open Sans",
+                family: "Plus Jakarta Display",
                 style: 'normal',
                 lineHeight: 2
               },
@@ -939,6 +936,8 @@
       },
     });
 
+
+    let chartInstance; // Declared chart instance variable
 
     var ctx2 = document.getElementById("chart-line").getContext("2d");
 
@@ -968,7 +967,7 @@
 
 
 
-    new Chart(ctx2, {
+    chartInstance = new Chart(ctx2, {
       type: "line",
       data: {
         labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
@@ -1050,7 +1049,7 @@
               color: '#b2b9bf',
               font: {
                 size: 11,
-                family: "Open Sans",
+                family: "Plus Jakarta Display",
                 style: 'normal',
                 lineHeight: 2
               },
@@ -1070,7 +1069,7 @@
               padding: 20,
               font: {
                 size: 11,
-                family: "Open Sans",
+                family: "Plus Jakarta Display",
                 style: 'normal',
                 lineHeight: 2
               },
@@ -1079,6 +1078,14 @@
         },
       },
     });
+    // Function to update chart labels
+    // Function to update the label for the specific dataset
+    function updateChartLabel(index, newLabel) {
+      if (chartInstance && chartInstance.data.datasets[index]) {
+        chartInstance.data.datasets[index].label = newLabel;
+        chartInstance.update(); // Refresh the chart to reflect changes
+      }
+    }
   </script>
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
