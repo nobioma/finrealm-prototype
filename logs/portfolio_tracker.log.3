@@ -1,100 +1,89 @@
-2024-07-18 22:44:00,716 ERROR: Exception on /stock_tracker [GET] [in C:\Users\Telsa\OneDrive\04 - SUMMER 24\SEO TECH COURSE\Project_3\Portfolio_Tracker\venv\Lib\site-packages\flask\app.py:1457]
-Traceback (most recent call last):
-  File "C:\Users\Telsa\OneDrive\04 - SUMMER 24\SEO TECH COURSE\Project_3\Portfolio_Tracker\venv\Lib\site-packages\flask\app.py", line 2073, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Telsa\OneDrive\04 - SUMMER 24\SEO TECH COURSE\Project_3\Portfolio_Tracker\venv\Lib\site-packages\flask\app.py", line 1518, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Telsa\OneDrive\04 - SUMMER 24\SEO TECH COURSE\Project_3\Portfolio_Tracker\venv\Lib\site-packages\flask\app.py", line 1516, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Telsa\OneDrive\04 - SUMMER 24\SEO TECH COURSE\Project_3\Portfolio_Tracker\venv\Lib\site-packages\flask\app.py", line 1502, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Telsa\OneDrive\04 - SUMMER 24\SEO TECH COURSE\Project_3\Portfolio_Tracker\venv\Lib\site-packages\flask_login\utils.py", line 272, in decorated_view
-    return func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Telsa\OneDrive\04 - SUMMER 24\SEO TECH COURSE\Project_3\Portfolio_Tracker\app.py", line 157, in stock_tracker
-    return render_template('stock_tracker.html', title='Stock Tracker')
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Telsa\OneDrive\04 - SUMMER 24\SEO TECH COURSE\Project_3\Portfolio_Tracker\venv\Lib\site-packages\flask\templating.py", line 147, in render_template
-    return _render(
-           ^^^^^^^^
-  File "C:\Users\Telsa\OneDrive\04 - SUMMER 24\SEO TECH COURSE\Project_3\Portfolio_Tracker\venv\Lib\site-packages\flask\templating.py", line 128, in _render
-    rv = template.render(context)
-         ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Telsa\OneDrive\04 - SUMMER 24\SEO TECH COURSE\Project_3\Portfolio_Tracker\venv\Lib\site-packages\jinja2\environment.py", line 1304, in render
-    self.environment.handle_exception()
-  File "C:\Users\Telsa\OneDrive\04 - SUMMER 24\SEO TECH COURSE\Project_3\Portfolio_Tracker\venv\Lib\site-packages\jinja2\environment.py", line 939, in handle_exception
-    raise rewrite_traceback_stack(source=source)
-  File "C:\Users\Telsa\OneDrive\04 - SUMMER 24\SEO TECH COURSE\Project_3\Portfolio_Tracker\templates\stock_tracker.html", line 4, in top-level template code
-    {% extends "base.html" %}
-  File "C:\Users\Telsa\OneDrive\04 - SUMMER 24\SEO TECH COURSE\Project_3\Portfolio_Tracker\templates\base.html", line 42, in top-level template code
-    {% block content %}{% endblock %}
-    ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Telsa\OneDrive\04 - SUMMER 24\SEO TECH COURSE\Project_3\Portfolio_Tracker\templates\stock_tracker.html", line 17, in block 'content'
-    {% for date, stock in stocks.items() %}
-    ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Telsa\OneDrive\04 - SUMMER 24\SEO TECH COURSE\Project_3\Portfolio_Tracker\venv\Lib\site-packages\jinja2\environment.py", line 487, in getattr
-    return getattr(obj, attribute)
-           ^^^^^^^^^^^^^^^^^^^^^^^
-jinja2.exceptions.UndefinedError: 'stocks' is undefined
-2024-07-18 22:58:35,090 INFO: Portfolio Tracker startup [in C:\Users\Telsa\OneDrive\04 - SUMMER 24\SEO TECH COURSE\Project_3\Portfolio_Tracker\app.py:46]
-2024-07-22 09:23:28,453 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 09:23:29,812 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 09:58:36,628 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 09:58:38,978 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 10:38:51,460 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 10:43:07,934 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 10:43:48,834 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 10:52:16,538 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 10:52:46,897 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 10:53:22,425 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 10:53:24,611 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 11:06:06,695 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 11:06:07,518 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 11:12:40,010 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 11:12:45,528 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 11:40:23,215 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 11:40:24,537 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 11:43:21,762 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 11:43:31,135 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 11:48:31,248 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 11:48:52,768 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 12:30:30,220 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 12:30:31,450 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 12:36:14,444 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 12:37:55,752 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 12:38:13,931 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 12:39:16,095 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 12:49:08,126 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 12:49:09,790 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 12:57:28,289 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 12:57:35,510 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 12:58:15,845 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 12:58:31,749 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 12:58:35,521 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 12:58:52,023 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 13:00:07,439 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 13:00:14,649 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 13:06:12,180 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 13:06:13,501 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 13:06:52,506 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 13:06:58,676 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 13:07:01,346 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 13:07:03,946 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 13:07:45,255 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 13:08:28,861 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 13:08:52,287 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 13:09:27,950 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 13:09:29,241 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 13:21:16,906 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 13:21:20,712 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 13:21:24,237 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 13:21:30,242 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 13:23:35,843 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 13:23:39,023 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 13:23:41,876 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 13:23:44,480 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
-2024-07-22 13:23:51,634 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
+2024-07-23 12:27:38,466 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
+2024-07-23 12:27:57,885 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
+2024-07-23 13:21:30,294 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
+2024-07-23 13:26:05,000 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
+2024-07-23 13:26:13,312 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
+2024-07-23 13:50:48,912 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
+2024-07-23 14:07:40,811 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:47]
+2024-07-23 14:07:42,422 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:47]
+2024-07-23 14:09:43,110 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:47]
+2024-07-23 14:09:51,470 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:47]
+2024-07-23 14:09:57,620 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:47]
+2024-07-23 14:10:01,680 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:47]
+2024-07-23 14:14:02,969 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:47]
+2024-07-23 14:14:23,157 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:47]
+2024-07-23 14:15:40,052 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:47]
+2024-07-23 14:15:41,563 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:47]
+2024-07-23 15:08:35,983 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:47]
+2024-07-23 15:08:37,217 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:47]
+2024-07-23 15:21:04,686 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:47]
+2024-07-23 15:21:06,004 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:47]
+2024-07-23 15:47:14,678 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:47]
+2024-07-23 15:47:44,384 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:47]
+2024-07-23 15:47:51,755 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:47]
+2024-07-23 15:49:15,183 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:47]
+2024-07-23 15:49:21,335 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:47]
+2024-07-23 15:50:49,870 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:47]
+2024-07-23 15:50:51,129 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:47]
+2024-07-23 15:55:13,240 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:47]
+2024-07-23 15:55:19,192 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:47]
+2024-07-23 15:55:25,182 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:47]
+2024-07-23 16:33:17,704 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:47]
+2024-07-23 16:33:18,924 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:47]
+2024-07-23 16:56:03,743 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:47]
+2024-07-23 16:56:06,704 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:47]
+2024-07-23 16:56:23,724 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:47]
+2024-07-23 16:56:24,964 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:47]
+2024-07-23 16:57:15,222 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:47]
+2024-07-23 16:57:21,945 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:47]
+2024-07-23 16:57:29,238 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:47]
+2024-07-23 16:57:34,394 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:47]
+2024-07-23 16:57:39,241 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:47]
+2024-07-23 16:58:00,894 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:47]
+2024-07-23 16:58:02,244 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:47]
+2024-07-23 17:22:39,126 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:47]
+2024-07-23 17:23:03,501 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:47]
+2024-07-23 17:23:04,819 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:47]
+2024-07-23 17:48:44,441 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:47]
+2024-07-23 17:48:45,343 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:47]
+2024-07-23 17:51:59,141 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:47]
+2024-07-23 17:52:55,120 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:47]
+2024-07-23 17:52:55,955 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:47]
+2024-07-23 17:58:33,666 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:47]
+2024-07-23 17:58:59,789 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
+2024-07-23 18:00:41,493 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
+2024-07-23 18:00:49,069 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
+2024-07-23 18:00:54,354 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
+2024-07-23 18:04:27,528 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
+2024-07-23 18:04:28,374 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
+2024-07-23 21:55:30,037 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
+2024-07-23 21:55:31,327 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
+2024-07-23 22:26:04,079 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
+2024-07-23 22:26:09,955 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
+2024-07-23 22:26:14,826 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
+2024-07-23 22:26:26,234 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
+2024-07-23 22:26:31,561 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
+2024-07-23 22:26:34,162 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
+2024-07-23 22:26:44,363 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
+2024-07-23 22:26:52,544 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
+2024-07-23 22:27:05,674 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
+2024-07-23 22:27:18,044 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
+2024-07-23 22:27:55,919 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:46]
+2024-07-23 22:57:31,452 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:51]
+2024-07-23 22:57:33,132 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:51]
+2024-07-23 23:18:45,863 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:51]
+2024-07-23 23:18:50,200 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:51]
+2024-07-23 23:18:57,428 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:51]
+2024-07-24 00:06:51,141 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:51]
+2024-07-24 00:06:52,843 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:51]
+2024-07-24 00:07:36,254 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:51]
+2024-07-24 00:07:37,883 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:51]
+2024-07-24 00:08:58,507 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:51]
+2024-07-24 00:09:00,098 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:51]
+2024-07-24 00:14:33,613 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:51]
+2024-07-24 00:20:41,023 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:51]
+2024-07-24 00:20:42,606 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:51]
+2024-07-24 00:25:22,444 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:51]
+2024-07-24 00:29:42,168 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:51]
+2024-07-24 00:36:34,706 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:51]
+2024-07-24 00:36:36,288 INFO: Portfolio Tracker startup [in /Users/eze/Downloads/soft-ui-dashboard-main/app.py:51]

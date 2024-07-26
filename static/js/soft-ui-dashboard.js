@@ -679,53 +679,80 @@ document.querySelectorAll('[contenteditable="true"]').forEach((element) => {
       this.innerText = newSymbol;
 
       // Fetch new data from the API
-      fetch(`/fetch-stock-data?symbol=${newSymbol}`)
+      /* fetch(`/fetch-stock-data?symbol=${newSymbol}`)
         .then(response => response.json()) // Parse the JSON data from the response
         .then(data => {
           if (data.error) { // Check if there is an error in the response
             alert(data.error); // Display the error message
             return; // Exit the function if there is an error
-          }
-          /* console.log('we are getting to before data prompting')
-          const data = {
-            'Meta Data': {
-              '1. Information': 'Monthly Prices (open, high, low, close) and Volumes',
-              '2. Symbol': 'AAPL',
-              '3. Last Refreshed': '2024-07-24',
-              '4. Time Zone': 'US/Eastern'
-            },
-            'Monthly Time Series': {
-              '2024-07-24': {
-                '1. open': '212.0900',
-                '2. high': '237.2300',
-                '3. low': '211.9200',
-                '4. close': '218.5400',
-                '5. volume': '932208953'
-              },
-              '2024-06-28': {
-                '1. open': '192.9000',
-                '2. high': '220.2000',
-                '3. low': '192.1500',
-                '4. close': '210.6200',
-                '5. volume': '1723984420'
-              },
-              '2024-05-31': {
-                '1. open': '169.5800',
-                '2. high': '193.0000',
-                '3. low': '169.1100',
-                '4. close': '192.2500',
-                '5. volume': '1336570142'
-              },
-              '1911-04-31': {
-                '1. open': '169.5800',
-                '2. high': '193.0000',
-                '3. low': '169.1100',
-                '4. close': '192.2500',
-                '5. volume': '1336570142'
-              }
-    
-            }
           } */
+      const data = {
+        "Meta Data": {
+          "1. Information": "Monthly Prices (open, high, low, close) and Volumes",
+          "2. Symbol": "AAPL",
+          "3. Last Refreshed": "2024-07-24",
+          "4. Time Zone": "US/Eastern"
+        },
+        "Monthly Time Series": {
+          "2024-07-24": {
+          "1. open": "712.09",
+          "2. high": "937.23",
+          "3. low": "511.92",
+          "4. close": "718.54",
+          "5. volume": "932208953"
+          },
+          "2024-06-28": {
+          "1. open": "292.90",
+          "2. high": "720.20",
+          "3. low": "192.15",
+          "4. close": "510.62",
+          "5. volume": "1723984420"
+          },
+          "2024-05-31": {
+            "1. open": "369.58",
+            "2. high": "493.00",
+            "3. low": "169.11",
+            "4. close": "292.25",
+            "5. volume": "1336570142"
+          },
+          "2024-04-30": {
+            "1. open": "269.58",
+            "2. high": "393.00",
+            "3. low": "269.11",
+            "4. close": "292.25",
+            "5. volume": "1236570142"
+          },
+          "2024-03-31": {
+            "1. open": "169.58",
+            "2. high": "293.00",
+            "3. low": "169.11",
+            "4. close": "192.25",
+            "5. volume": "1136570142"
+          },
+          "2024-02-29": {
+            "1. open": "269.58",
+            "2. high": "393.00",
+            "3. low": "269.11",
+            "4. close": "292.25",
+            "5. volume": "1236570142"
+          },
+          "2024-01-31": {
+            "1. open": "369.58",
+            "2. high": "493.00",
+            "3. low": "369.11",
+            "4. close": "392.25",
+            "5. volume": "1336570142"
+          },
+          "2023-12-31": {
+            "1. open": "469.58",
+            "2. high": "593.00",
+            "3. low": "469.11",
+            "4. close": "492.25",
+            "5. volume": "1436570142"
+          }
+        }
+      }
+
           // Assuming data is structured as shown in your example
           const monthlyData = data['Monthly Time Series'];
 
@@ -751,9 +778,8 @@ document.querySelectorAll('[contenteditable="true"]').forEach((element) => {
 
           // Update the chart label for the relevant dataset
           updateChartLabel(datasetIndex, newSymbol);
-        })
           
-        .catch(error => console.error('Error fetching stock data:', error));
+        // .catch(error => console.error('Error fetching stock data:', error));
     }
   })
 });
@@ -783,7 +809,7 @@ function fetchStockData(newSymbol, cardId) {
 }
 
 
-// 
+// Toggle line on line chart
 document.addEventListener('DOMContentLoaded', function () {
   // Get all remove line on chart cards
   const cards = document.querySelectorAll('.removable-line');

@@ -428,3 +428,9 @@ body {
     color: #cc9934;
     /* Change this to the color you want for the icon */
 }
+
+/* Get rec button text color on hover */
+.btn.blur-nav.border:hover {
+    color: gold;
+    /* Change the text color to gold on hover */
+}

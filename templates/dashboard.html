@@ -367,7 +367,7 @@
                 <div class="col-lg-6">
                   <div class="d-flex flex-column h-100">
                     <p class="mb-1 pt-2 text-bold subtext">Welcome back,</p>
-                    <h5 class="font-weight-bolder header">Nnanyere Obioma</h5>
+                    <h5 class="font-weight-bolder header">Nna</h5>
                     <p class="mb-5 subtext">Forex Trading is hot!</p>
                     <a class="text-body text-sm font-weight-bold mb-0 icon-move-right mt-auto text-white fixed-plugin-2-button-nav header" href="javascript:;">
                       Learn More
@@ -403,23 +403,29 @@
       </div>
       <div class="row mt-4">
         <div class="col-lg-5 mb-lg-0 mb-4">
-          <div class="card clickable enlargeable-card">
+          <!-- <div class="card clickable enlargeable-card"> -->
+          <div class="card">
             <div class="card card-body--scrollable p-3">
-              <div class="bg-gradient-dark border-radius-lg py-3 pe-1 mb-3">
+              <div class="bg-gradient-dark border-radius-lg py-3 pe-1 mb-3" style="display: none;">
                 <div class="chart">
                   <canvas id="chart-bars" class="chart-canvas" height="170"></canvas>
                 </div>
               </div>
-              <h6 class="ms-2 mt-4 mb-0 header"> Portfolio </h6>
-              <p class="text-sm ms-2"> (<span class="font-weight-bolder">+23%</span>) than last week </p>
+              <h6 class="ms-2 mt-4 mb-0 header"> Advising </h6>
               <div class="container border-radius-lg">
-                <!-- Container content -->
+                <form action="/get_recommendation" method="post">
+                  <div class="mb-3">
+                    <label for="ticker" class="form-label subtext">Enter Ticker Symbol</label>
+                    <input type="text" class="form-control" id="ticker" name="ticker" required>
+                  </div>
+                  <button type="submit" class="btn blur-nav border">Get Recommendation</button>
+                </form>
               </div>
             </div>
           </div>
         </div>
         <div class="col-lg-7">
-          <div class="card" id="toggle-card">
+          <div class="card card clickable enlargeable-card" id="toggle-card">
             <div class="card-header pb-0">
               <h6 class="header">Stock Trends</h6>
               <p class="text-sm">

@@ -1,0 +1,64 @@
+<!-- templates/recommendation.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Recommendation</title>
+    <style>
+        body,
+        html,
+        a {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: "Plus Jakarta Display";
+            background-image: linear-gradient(315deg, #161615 0%, #161615 80%);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: white;
+            text-decoration: none;
+
+        }
+
+        a {
+            height: auto;
+        }
+
+        .coming-soon {
+            font-size: 2rem;
+        }
+       
+        .clickable-text {
+        text-decoration: none; /* Removes underline from the link */
+        color: inherit; /* Inherits the color from the parent element */
+        display: block; /* Makes the link a block-level element */
+        width: fit-content; /* Adjusts the width to fit the content */
+        }
+        .clickable-text p {
+            margin: 0; /* Removes default margin from <p> elements */
+            width: 600px; /* Keeps the same width as before */
+        }
+        .clickable-text:hover {
+            text-decoration: none; /* Adds underline on hover for better user experience */
+            color: #cc9934
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/plus-jakarta-display.min.css">
+</head>
+
+<body>
+    <div id="recommendation-result">
+        <a href="/dashboard" class="clickable-text">
+            <p><strong>Recommendation:</strong> {{ recommendation }}</p>
+            <p><strong>Confidence:</strong> {{ confidence }}/10</p>
+            <p><strong>Rationale:</strong> {{ rationale }}</p>
+        </a>
+    </div>
+
+</body>
+
+</html>

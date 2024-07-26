@@ -16,6 +16,7 @@ import random
 from datetime import datetime, timedelta
 import openai
 from openai import OpenAI
+from recommendations import get_recommendation
 
 
 # Configuration
@@ -23,8 +24,8 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY') or 'you-will-never-guess'
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL') or 'sqlite:///stock_portfolio.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['ALPHA_VANTAGE_API_KEY'] = os.environ.get('ALPHA_VANTAGE_API_KEY') or 'your_api_key_here'
-app.config['CHAT_GPT_KEY'] = os.environ.get('CHAT_KEY') or 'your_chat_key_here'
+app.config['ALPHA_VANTAGE_API_KEY'] = os.environ.get('ALPHA_VANTAGE_API_KEY') or 'M58F164KQPTN5RBM'
+app.config['CHAT_GPT_KEY'] = os.environ.get('CHAT_KEY') or 'sk-proj-d6fATgVxZCQMderY4HZ4T3BlbkFJTrEBb9WdLvyvCb7QkB3q'
 
 
 # Print all config keys to the terminal
@@ -154,7 +155,7 @@ def dashboard():
 @app.route('/fetch-stock-data')
 def fetch_stock_data():
     api_key = app.config['ALPHA_VANTAGE_API_KEY']
-    api_key ='TYFZV910OF28JIHP'
+    api_key ='4U94CEUQACFN8FUN'
     # default_symbol = 'MSFT'
     symbol = request.args.get('symbol')
     if not symbol:
@@ -180,7 +181,7 @@ def fetch_stock_data():
 # Search routing for tickers
 @app.route('/search')
 def search():
-    api_key ='TYFZV910OF28JIHP'
+    api_key ='4U94CEUQACFN8FUN'
     keyword = request.args.get('keyword')
 
     # Construct the URL with the provided keyword
@@ -232,6 +233,31 @@ def chat():
         return jsonify({'response': chat_response})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+    
+# Get recommendation route
+@app.route('/get_recommendation', methods=['GET', 'POST'])
+def recommendation():
+    if request.method == 'POST':
+        ticker = request.form.get('ticker')
+    else:
+        ticker = request.args.get('ticker')
+
+    if not ticker:
+        return jsonify({"error": "Ticker symbol is required"}), 400
+
+    try:
+        rec, confidence, rationale = get_recommendation(ticker)
+        print('Reached recommendation function')
+        print(f'Ticker: {ticker}')
+        print(f'Recommendation: {rec}')
+        print(f'Confidence: {confidence}')
+        print(f'Rationale: {rationale}')
+        
+        return render_template('print_rec.html', recommendation=rec, confidence=confidence, rationale=rationale)
+    
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 
 @app.route('/news')
 def news():
