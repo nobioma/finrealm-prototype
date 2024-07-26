@@ -14,7 +14,6 @@ import io
 import base64
 import random
 from datetime import datetime, timedelta
-import openai
 from openai import OpenAI
 from recommendations import get_recommendation
 
@@ -24,8 +23,8 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY') or 'you-will-never-guess'
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL') or 'sqlite:///stock_portfolio.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['ALPHA_VANTAGE_API_KEY'] = os.environ.get('ALPHA_VANTAGE_API_KEY') or 'M58F164KQPTN5RBM'
-app.config['CHAT_GPT_KEY'] = os.environ.get('CHAT_KEY') or 'sk-proj-d6fATgVxZCQMderY4HZ4T3BlbkFJTrEBb9WdLvyvCb7QkB3q'
+app.config['ALPHA_VANTAGE_API_KEY'] = os.environ.get('ALPHA_VANTAGE_API_KEY') or 'your-api-key'
+app.config['CHAT_GPT_KEY'] = os.environ.get('CHAT_KEY') or 'your-api-key'
 
 
 # Print all config keys to the terminal
@@ -155,7 +154,6 @@ def dashboard():
 @app.route('/fetch-stock-data')
 def fetch_stock_data():
     api_key = app.config['ALPHA_VANTAGE_API_KEY']
-    api_key ='4U94CEUQACFN8FUN'
     # default_symbol = 'MSFT'
     symbol = request.args.get('symbol')
     if not symbol:
@@ -181,7 +179,7 @@ def fetch_stock_data():
 # Search routing for tickers
 @app.route('/search')
 def search():
-    api_key ='4U94CEUQACFN8FUN'
+    api_key = app.config['ALPHA_VANTAGE_API_KEY']
     keyword = request.args.get('keyword')
 
     # Construct the URL with the provided keyword
@@ -217,7 +215,7 @@ def chat():
         return jsonify({'error': 'No message provided'}), 400
 
     client = OpenAI(
-        api_key='sk-proj-d6fATgVxZCQMderY4HZ4T3BlbkFJTrEBb9WdLvyvCb7QkB3q',
+        api_key = app.config['CHAT_GPT_KEY'],
     )
     
     # Create a response from ChatGPT
